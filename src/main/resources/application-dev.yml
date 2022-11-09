@@ -1,0 +1,22 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 4096MB
+      max-request-size: 4096MB
+server:
+  port: 8087
+oss:
+  end-point: xxx
+  access-key-id: xxxx
+  access-key-secret: xxxx
+  bucket-name:
+    l-gen: xxx
+  bucket-url:
+    l-gen: https://xxx.aliyuncs.co/
+logging:
+  level:
+    root: info
+    com:
+      leo:
+        toolkit:
+          service: debug
