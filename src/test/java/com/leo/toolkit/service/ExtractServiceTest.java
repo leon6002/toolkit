@@ -23,7 +23,7 @@ class ExtractServiceTest {
 
     @Test
     void extract() throws IOException {
-        String path = Const.LOCAL_TEST_RESOURCE_PATH + "JnKNyN.png";
+        String path = Const.LOCAL_TEST_RESOURCE_PATH + "1664280311000诉讼服务协议.pdf";
         ExtractDTO extract = extractService.extract(path);
         String s = JsonUtils.toJson(extract);
         String file = FileKit.string2File(Const.LOCAL_OUTPUT_PATH, s);

@@ -65,21 +65,10 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.github.axet/java-unrar -->
         <dependency>
-            <groupId>com.github.axet</groupId>
-            <artifactId>java-unrar</artifactId>
-            <version>1.7.0-8</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.sevenzipjbinding</groupId>
-            <artifactId>sevenzipjbinding</artifactId>
-            <version>16.02-2.01</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.sevenzipjbinding</groupId>
-            <artifactId>sevenzipjbinding-all-platforms</artifactId>
-            <version>16.02-2.01</version>
+            <groupId>com.github.junrar</groupId>
+            <artifactId>junrar</artifactId>
+            <version>7.5.4</version>
         </dependency>
         <dependency>
             <groupId>org.docx4j</groupId>

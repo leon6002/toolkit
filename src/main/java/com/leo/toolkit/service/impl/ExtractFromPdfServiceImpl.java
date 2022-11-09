@@ -14,6 +14,7 @@ import org.apache.pdfbox.pdmodel.graphics.PDXObject;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.imageio.ImageIO;
@@ -48,6 +49,8 @@ public class ExtractFromPdfServiceImpl implements ExtractService {
      */
     @Override
     public ExtractDTO extract(String url) {
+        StopWatch sw = new StopWatch();
+        sw.start("extract pdf");
         url = Optional.ofNullable(url).orElse("");
         String examineContent = null;
         List<String> images = new ArrayList<>();
@@ -75,6 +78,8 @@ public class ExtractFromPdfServiceImpl implements ExtractService {
                 }
             }
             document.close();
+            sw.stop();
+            log.info("extract pdf complete:\n{}", sw.prettyPrint());
         } catch (Exception e) {
             log.error("pdf提取文字和图片出错: ", e);
         }

@@ -44,6 +44,11 @@ public class FileKit {
         return result.toString(StandardCharsets.UTF_8.name());
     }
 
+    public static String getFileName(String filePath) {
+        filePath = Optional.ofNullable(filePath).orElse("");
+        return filePath.substring(filePath.lastIndexOf("/") + 1);
+    }
+
     public enum ContentTypeEnum {
         /**
          * HTML(1, "图文"),
@@ -148,12 +153,13 @@ public class FileKit {
 
     /**
      * 根据文件名称判断是否是旧版office文件格式
+     *
      * @param fileName 文件名称
      * @return boolean true-是旧版office false-不是旧版office
      */
-    public static boolean isOldOffice(String fileName){
+    public static boolean isOldOffice(String fileName) {
         String[] oldExt = {"xls", "ppt", "doc"};
-        return Arrays.stream(oldExt).anyMatch(e->e.equalsIgnoreCase(getFileExt(fileName)));
+        return Arrays.stream(oldExt).anyMatch(e -> e.equalsIgnoreCase(getFileExt(fileName)));
     }
 
 
@@ -242,10 +248,13 @@ public class FileKit {
 
 
     public static void main(String[] args) throws IOException {
-        Integer s = resolveContentType("*.");
-        System.out.println(s);
-        InputStream inputStream = openStream("https://whaleip.com");
-        writeFile("/Users/apple/Documents/test11111", inputStream);
+//        Integer s = resolveContentType("*.");
+//        System.out.println(s);
+//        InputStream inputStream = openStream("https://whaleip.com");
+//        writeFile("/Users/apple/Documents/test11111", inputStream);
+
+        String fileName = getFileName("/adasdasd/uu.txt");
+        System.out.println(fileName);
     }
 
 

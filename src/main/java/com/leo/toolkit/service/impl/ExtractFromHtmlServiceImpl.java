@@ -3,7 +3,9 @@ package com.leo.toolkit.service.impl;
 import com.leo.toolkit.dto.ExtractDTO;
 import com.leo.toolkit.service.ExtractService;
 import com.leo.toolkit.utils.FileKit;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 import org.springframework.web.util.HtmlUtils;
 
 import java.io.IOException;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+@Slf4j
 @Service
 public class ExtractFromHtmlServiceImpl implements ExtractService {
     private static final Pattern IMAGE_PATTERN = Pattern.compile("<(img|image)[^>]*src=\"([^\"]*)\"[^>]*>", Pattern.CASE_INSENSITIVE);
@@ -26,6 +28,8 @@ public class ExtractFromHtmlServiceImpl implements ExtractService {
      */
     @Override
     public ExtractDTO extract(String url) throws IOException {
+        StopWatch sw = new StopWatch();
+        sw.start("start extracting");
         url = Optional.ofNullable(url).orElse("");
         InputStream inputStream = FileKit.getInputStream(url);
         String content = FileKit.is2String(inputStream);
@@ -38,6 +42,8 @@ public class ExtractFromHtmlServiceImpl implements ExtractService {
             String src = HtmlUtils.htmlUnescape(matcher.group(2));
             images.add(src);
         }
+        sw.stop();
+        log.info("extract cost result {}", sw.prettyPrint());
         return new ExtractDTO(examineContent, images);
     }
 }
